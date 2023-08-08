@@ -1,9 +1,9 @@
-package com.entities.repositories;
+package com.Model.repositories;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
-import com.entities.ElasticBook;
+import com.Model.ElasticBook;
 
 @Repository
 

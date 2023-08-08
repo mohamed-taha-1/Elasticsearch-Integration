@@ -1,4 +1,4 @@
-package com.entities;
+package com.Model;
 
 
 import org.springframework.data.annotation.Id;

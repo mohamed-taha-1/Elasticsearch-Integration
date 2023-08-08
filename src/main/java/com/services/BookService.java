@@ -1,10 +1,13 @@
 package com.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.entities.Book;
-import com.entities.repositories.BookRepository;
+import com.Model.Book;
+import com.Model.repositories.BookRepository;
+
 
 @Service
 public class BookService {
@@ -19,8 +22,20 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public Iterable<Book> findAllBooks() {
-        return bookRepository.findAll();
+    public List<Book> findAllBooks() {
+        return (List<Book>) bookRepository.findAll();
+    }
+    
+    public void updateTitlte( String newTitle, Long id ) {
+    	Book book = bookRepository.findById(id).orElse(null);
+        if (book != null) {
+            book.setTitle(newTitle);
+            bookRepository.save(book);
+        } else {
+            // Handle book not found error, or take appropriate action
+            throw new IllegalArgumentException("Book not found with ID: " + id);
+        }
+    	
     }
 
  
