@@ -64,6 +64,38 @@ public class BookController {
     	return bookRepo.findByTitle(title).get();
     	
     }
+    
+    @GetMapping("/{title}/{auther}")
+    public Iterable<Book> findByTitleAndAuther(@PathVariable String title, @PathVariable String auther) {
+    	
+    	return bookRepo.findByTitleAndAuthor(title,auther).get();
+    	
+    }
+    @GetMapping("/title/{chars}")
+    public Iterable<Book> findByTitleStartingWith(@PathVariable("chars") String characters) {
+    	
+    	return bookRepo.findByTitleStartingWith(characters).get();
+    	
+    }
+    @GetMapping("/jpql/{titlenName}")
+    public Iterable<Book> findByTitleName(@PathVariable("titlenName") String title) {
+    	
+    	return bookRepo.findByTitleStartingWith(title).get();
+    	
+    }
+    
+    @PostMapping("/save")
+    public ResponseEntity<?> saveBook(@RequestBody Book book){
+    	
+    	bookRepo.save(book);
+    	return ResponseEntity.ok("created new book successfully");
+    }
+    @PostMapping("/update/{book-id}")
+    public ResponseEntity<?> updateBook(@RequestBody Book book, @PathVariable("book-id") Long id){
+    	
+    	bookRepo.save(new Book(id,book.getTitle(), book.getAuthor()));
+    	return ResponseEntity.ok("created new book successfully");
+    }
 
    
 }
